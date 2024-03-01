@@ -27,7 +27,13 @@ export class AppComponent implements OnInit {
   }
 
   checkout(): void {
-    if (this.cartSvc.getItemsinCart) {
+
+    this.cartSvc.getItemsinCart
+    .subscribe(value =>
+      this.itemCount = value
+    )
+    //check if cart is empty
+    if (this.itemCount=0) {
       alert("cart is empty, unable to checkout")
     }
     this.router.navigate([ '/checkout' ])

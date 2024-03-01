@@ -5,17 +5,29 @@ create database ecommerce;
 
 use ecommerce;
 
-create table order (
+create table orders (
 
-    id not null,
-    date not null,
+    id char(8) not null,
+    date timestamp not null,
     name varchar(3) not null,
     address varchar(8) not null,
     priority boolean not null,
     comments varchar(128),
-    cart,
 
-    constraint primary key(name)
+    primary key(id)
+);
+
+create table cart (
+
+    id char(8) not null,
+    productId char(8) not null,
+    name varchar(128) not null,
+    quantity int not null,
+    price float,
+
+    primary key(productId),
+    constraint fk_id foreign key(id) references orders(id)
+
 );
 
 grant all privileges on ecommerce.* to 'fred'@'%';

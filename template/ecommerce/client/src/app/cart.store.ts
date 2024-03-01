@@ -31,15 +31,16 @@ export class CartStore extends ComponentStore<Cart>{
     //quantity is no of products, not quantity
     //if breadx2, applex2 => items in cart is 2
     readonly getItemsinCart = this.select<number> (
-        (slice: Cart) => slice.lineItems.length
+        (slice: Cart) => slice.lineItems.length //TO EDIT
     )
-
 
     //selectors
     //get lineitems for checkout
     readonly getLineItems = this.select<LineItem[]>(
         (slice: Cart) => slice.lineItems
     )
+
+
 
 
 }

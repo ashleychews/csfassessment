@@ -35,10 +35,10 @@ public class OrderController {
 
     poSvc.createNewPurchaseOrder(order);
 
-    JsonObject orderID = Json.createObjectBuilder()
+    JsonObject orderId = Json.createObjectBuilder()
         .add("orderid", order.getOrderId())
         .build();
 
-	 return ResponseEntity.ok(orderID.toString());
+	 return ResponseEntity.ok(orderId.toString());
   }
 }

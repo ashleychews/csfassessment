@@ -1,7 +1,8 @@
-import { Component, Input, OnInit, Output, inject } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Output, ViewChild, inject } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {LineItem} from '../models';
+import {Cart, LineItem} from '../models';
 import { CartStore } from '../cart.store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-order-form',
@@ -18,6 +19,12 @@ export class OrderFormComponent implements OnInit {
   @Input({ required: true })
   productId!: string
 
+  @Input({ required: true })
+  name!: string
+
+  @Input({ required: true })
+  price!: number
+
   form!: FormGroup
 
   ngOnInit(): void {
@@ -28,8 +35,8 @@ export class OrderFormComponent implements OnInit {
     const lineItem: LineItem = {
       prodId: this.productId,
       quantity: this.form.value['quantity'],
-      name: '',
-      price: 0
+      name: this.name,
+      price: this.price
     }
     this.form = this.createForm()
 

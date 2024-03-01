@@ -1,9 +1,10 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { LineItem } from '../models';
+import { Cart, LineItem } from '../models';
 import { CartStore } from '../cart.store';
 import { ProductService } from '../product.service';
+import { LastValueFromConfig } from 'rxjs/internal/lastValueFrom';
 
 @Component({
   selector: 'app-confirm-checkout',
@@ -18,6 +19,8 @@ export class ConfirmCheckoutComponent implements OnInit{
   private productSvc = inject(ProductService)
 
   itemsList$!: Observable<LineItem[]>
+
+  total: number=0
   
   form!:FormGroup
 
@@ -47,12 +50,13 @@ export class ConfirmCheckoutComponent implements OnInit{
         console.info('resp:', resp)
         alert((resp as any).orderId)
     })
-
   }
 
-
-
-
+  getTotal() {
+    //retrieves the line items array
+    this.itemsList$ = this.cartSvc.getLineItems
+    //get the price and quantity
+  }
 
 
 }

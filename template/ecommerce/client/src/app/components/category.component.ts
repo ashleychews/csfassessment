@@ -25,5 +25,5 @@ export class CategoryComponent implements OnInit {
     this.products$ = this.prodSvc.getProductsByCategory(this.category)
   }
 
-  
+
 }

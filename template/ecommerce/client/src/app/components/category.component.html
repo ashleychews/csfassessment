@@ -8,15 +8,15 @@
           <img [src]="p.image" width="100">
         </div>
         <div class="prod-detail">
-          Name: <span>{{ p.name }}</span>
+          Name: <span >{{ p.name }}</span>
           Brand: <span>{{ p.brand }}</span>
-          Price: <span>{{ p.price | currency:"INR" }}</span>
+          Price: <span >{{ p.price | currency:"INR" }}</span>
           Discount: <span>{{ p.discountPrice | currency:"INR" }}</span>
           Quantity: <span>{{ p.quantity }}</span>
         </div>
       </div>
       <div class="order-form">
-        <app-order-form [productId]="p.prodId"/>
+        <app-order-form [productId]="p.prodId" [name]="p.name" [price]="p.price"/>
       </div>
     </div>
   </div>
