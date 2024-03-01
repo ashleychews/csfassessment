@@ -36,7 +36,7 @@ export class OrderFormComponent implements OnInit {
       prodId: this.productId,
       quantity: this.form.value['quantity'],
       name: this.name,
-      price: this.price
+      price: this.price * this.form.value['quantity']
     }
     this.form = this.createForm()
 

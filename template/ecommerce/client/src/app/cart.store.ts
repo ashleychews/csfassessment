@@ -31,7 +31,8 @@ export class CartStore extends ComponentStore<Cart>{
     //quantity is no of products, not quantity
     //if breadx2, applex2 => items in cart is 2
     readonly getItemsinCart = this.select<number> (
-        (slice: Cart) => slice.lineItems.length //TO EDIT
+        (slice: Cart) => slice.lineItems.reduce((total, item)=>
+        total + item.quantity, 0) //TO EDIT
     )
 
     //selectors
@@ -39,6 +40,17 @@ export class CartStore extends ComponentStore<Cart>{
     readonly getLineItems = this.select<LineItem[]>(
         (slice: Cart) => slice.lineItems
     )
+
+    // readonly getLineItemsSummary = this.select(
+    //     (slice: Cart) => slice.lineItems.map(
+    //         item => ({
+    //             prodId: item.prodId,
+    //             name: item.name,
+    //             quantity: item.quantity,
+    //             price: item.price
+    //         })
+    //     )
+    // )
 
 
 

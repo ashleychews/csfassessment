@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { Cart, LineItem } from '../models';
 import { CartStore } from '../cart.store';
 import { ProductService } from '../product.service';
-import { LastValueFromConfig } from 'rxjs/internal/lastValueFrom';
 
 @Component({
   selector: 'app-confirm-checkout',
@@ -26,8 +25,8 @@ export class ConfirmCheckoutComponent implements OnInit{
 
   ngOnInit(): void {
     this.form = this.createForm()
-
     this.itemsList$ = this.cartSvc.getLineItems
+    this.calculateTotal()
     
   }
 
@@ -48,18 +47,15 @@ export class ConfirmCheckoutComponent implements OnInit{
     this.productSvc.checkout(this.form.value)
       .then(resp => {
         console.info('resp:', resp)
-        alert((resp as any).orderId)
+        alert((resp as any).orderid)
     })
   }
 
-  getTotal() {
+  calculateTotal() {
     //retrieves the line items array
-    this.itemsList$ = this.cartSvc.getLineItems
-    console.log(">>>item list", this.itemsList$)
-    //get the price and quantity in the array
-
-
-
+    this.itemsList$.subscribe(items => {
+      this.total = items.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+    })
   }
 
 

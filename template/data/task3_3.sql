@@ -7,10 +7,10 @@ use ecommerce;
 
 create table orders (
 
-    id char(8) not null,
+    id char(26) not null,
     date timestamp not null,
     name varchar(3) not null,
-    address varchar(8) not null,
+    address varchar(128) not null,
     priority boolean not null,
     comments varchar(128),
 
@@ -19,7 +19,7 @@ create table orders (
 
 create table cart (
 
-    id char(8) not null,
+    id char(26) not null,
     productId char(8) not null,
     name varchar(128) not null,
     quantity int not null,
