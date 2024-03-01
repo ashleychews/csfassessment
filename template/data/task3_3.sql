@@ -7,6 +7,8 @@ use ecommerce;
 
 create table order (
 
+    id not null,
+    date not null,
     name varchar(3) not null,
     address varchar(8) not null,
     priority boolean not null,

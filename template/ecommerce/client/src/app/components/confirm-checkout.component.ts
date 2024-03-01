@@ -42,9 +42,11 @@ export class ConfirmCheckoutComponent implements OnInit{
     const checkout = this.form.value
     console.info(">>>checking out", checkout)
 
-    this.productSvc.checkout(
-      this.form.value
-    )
+    this.productSvc.checkout(this.form.value)
+      .then(resp => {
+        console.info('resp:', resp)
+        alert((resp as any).orderId)
+    })
 
   }
 

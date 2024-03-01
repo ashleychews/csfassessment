@@ -9,6 +9,12 @@ import vttp.batch4.csf.ecommerce.models.Order;
 @Repository
 public class PurchaseOrderRepository {
 
+  public static final String SQL_INSERT_ORDER = """
+  
+    insert into order (id, date, name, address, priority, comments, cart)
+    values (? , ?, ?, ?, ?)
+  """;
+
   @Autowired
   private JdbcTemplate template;
 
@@ -18,5 +24,14 @@ public class PurchaseOrderRepository {
   // You may only add Exception to the method's signature
   public void create(Order order) {
     // TODO Task 3
+    template.update(SQL_INSERT_ORDER,
+      order.getOrderId(),
+      order.getDate(),
+      order.getName(),
+      order.getAddress(),
+      order.getPriority(),
+      order.getComments(),
+      order.getCart());
+
   }
 }
