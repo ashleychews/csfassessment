@@ -28,7 +28,7 @@ COPY mvnw.cmd .
 COPY pom.xml .
 COPY .mvn .mvn
 COPY src src
-COPY --from=ng-builder /ngapp/dist/client/browser/ src/main/resources/static
+COPY --from=ng-builder /ngapp/dist/client-side/browser/ src/main/resources/static
 
 # Build the application
 RUN mvn package -Dmaven.test.skip=true
