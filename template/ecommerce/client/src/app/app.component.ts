@@ -23,7 +23,6 @@ export class AppComponent implements OnInit {
       .subscribe(value =>
         this.itemCount = value
     )
-
   }
 
   checkout(): void {

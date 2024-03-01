@@ -55,7 +55,11 @@ export class ConfirmCheckoutComponent implements OnInit{
   getTotal() {
     //retrieves the line items array
     this.itemsList$ = this.cartSvc.getLineItems
-    //get the price and quantity
+    console.log(">>>item list", this.itemsList$)
+    //get the price and quantity in the array
+
+
+
   }
 
 

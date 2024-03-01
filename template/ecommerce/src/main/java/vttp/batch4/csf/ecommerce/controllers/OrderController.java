@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
+import vttp.batch4.csf.ecommerce.models.Cart;
 import vttp.batch4.csf.ecommerce.models.Order;
 import vttp.batch4.csf.ecommerce.services.PurchaseOrderService;
 
@@ -23,15 +24,19 @@ public class OrderController {
   // not be marked
   @PostMapping(path="/post", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<String> postOrder(@RequestPart String name, @RequestPart String address, @RequestPart boolean priority
-  ,@RequestPart (required=false) String comments ) {
+  ,@RequestPart (required=false) String comments, @RequestPart Cart cart ) {
 
     // TODO Task 3
+    Cart c = new Cart();
+    c.getLineItems();
+
     Order order = new Order();
     order.getOrderId();
     order.setName(name);
     order.setAddress(address);
     order.setPriority(priority);
     order.setComments(comments);
+    order.setCart(cart);
 
     poSvc.createNewPurchaseOrder(order);
 
