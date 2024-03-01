@@ -19,6 +19,7 @@ public class PurchaseOrderRepository {
   public static final String SQL_INSERT_LINE_ITEMS = """
       
     insert into cart (id, productId, name, quantity, price)
+    values (?,?,?,?,?)
 
   """;
   

@@ -48,13 +48,13 @@
   <tbody>
     <tr *ngFor="let i of list">
       <td> {{i.name}} </td>
-      <td> {{i.price}} </td>
+      <td> {{i.price | currency:"INR" }} </td>
       <td> {{i.quantity}} </td>
     </tr>
   </tbody>
   <tfoot>
     <td></td>
     <td>Total: </td>
-    <td> {{total}} </td>
+    <td> {{total| currency:"INR" }} </td>
   </tfoot>
 </table>

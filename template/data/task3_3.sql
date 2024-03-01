@@ -20,7 +20,7 @@ create table orders (
 create table cart (
 
     id char(26) not null,
-    productId char(8) not null,
+    productId char(64) not null,
     name varchar(128) not null,
     quantity int not null,
     price float,

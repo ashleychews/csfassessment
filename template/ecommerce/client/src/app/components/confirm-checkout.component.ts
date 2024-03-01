@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { Cart, LineItem } from '../models';
+import { Observable, firstValueFrom } from 'rxjs';
+import { Cart, LineItem, Order } from '../models';
 import { CartStore } from '../cart.store';
 import { ProductService } from '../product.service';
 
@@ -18,6 +18,7 @@ export class ConfirmCheckoutComponent implements OnInit{
   private productSvc = inject(ProductService)
 
   itemsList$!: Observable<LineItem[]>
+  itemList: LineItem[] = [];
 
   total: number=0
   
@@ -26,6 +27,12 @@ export class ConfirmCheckoutComponent implements OnInit{
   ngOnInit(): void {
     this.form = this.createForm()
     this.itemsList$ = this.cartSvc.getLineItems
+
+    //update the values in item list
+    this.itemsList$.subscribe(lineItems => {
+      this.itemList = lineItems
+    })
+
     this.calculateTotal()
     
   }
@@ -41,6 +48,8 @@ export class ConfirmCheckoutComponent implements OnInit{
 
   //process form when user clicks submit
   process() {
+    var order = this.form.value as Order
+    order.cart = {lineItems: this.itemList}
     const checkout = this.form.value
     console.info(">>>checking out", checkout)
 
