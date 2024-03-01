@@ -48,6 +48,7 @@ ENV SPRING_DATASOURCE_PASSWORD=
 ENV SPRING_DATA_MONGODB_URI=
 
 # Expose the port
+
 EXPOSE ${PORT}
 
 # Run the program
